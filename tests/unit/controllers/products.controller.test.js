@@ -11,11 +11,12 @@ const productsController = require('../../../src/controllers/products.controller
 const { correctAllProductsReturn,
   correctProductByIdReturn,
   noProductsReturn,
+  registeredProduct
 } = require('./mocks/products.controller.mock');
 
 
-describe('Tests driver controller', () => {
-  describe('Unit tests driver controller', () => {
+describe('Tests product controller', () => {
+  describe('Unit tests product controller', () => {
     afterEach(() => {
       sinon.restore();
     })
@@ -76,6 +77,22 @@ describe('Tests driver controller', () => {
 
       expect(res.status).to.have.been.calledWith(404);
       expect(res.json).to.have.been.calledWith({ message: noProductsReturn.message });
+    })
+    it('returns status 201 if the product is registered', async () => {
+      const req = { body: { name: 'capa do batman' }};
+      const res = {};
+
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+
+      sinon.stub(productsService, 'registerProduct').resolves(registeredProduct);
+      sinon.stub(productsService, 'findProductById').resolves(registeredProduct);
+
+      await productsController.registerProduct(req, res);
+      // console.log(noProductsReturn.message);
+
+      expect(res.status).to.have.been.calledWith(201);
+      expect(res.json).to.have.been.calledWith( registeredProduct.message );
     })
   });
 })

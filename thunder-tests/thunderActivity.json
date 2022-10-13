@@ -36,12 +36,12 @@
     "method": "POST",
     "sortNum": 0,
     "created": "2022-10-13T21:31:43.917Z",
-    "modified": "2022-10-13T22:12:21.179Z",
+    "modified": "2022-10-13T22:41:33.310Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"name\": \"o\"\n}",
+      "raw": "{\n  \"name\": \"capa do batman\"\n}",
       "form": []
     },
     "tests": []

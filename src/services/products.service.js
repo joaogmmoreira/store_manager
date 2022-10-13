@@ -18,9 +18,8 @@ const registerProduct = async (data) => {
   if (validation.type) return validation;
   const insertedData = await productsModel.registerProduct(data);
   const result = await findProductById(insertedData);
-  // console.log(result);
 
-  return { type: null, message: result.message };
+  return result;
 };
 
 module.exports = {

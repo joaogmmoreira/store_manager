@@ -31,8 +31,17 @@ const noProductsReturn = ({
   message: 'Product not found'
 });
 
+const registeredProduct = ({
+  type: null,
+  message: [{
+    id: 4,
+    name: 'capa do batman'
+  }]
+})
+
 module.exports = {
   correctAllProductsReturn,
   correctProductByIdReturn,
   noProductsReturn,
+  registeredProduct,
 }
