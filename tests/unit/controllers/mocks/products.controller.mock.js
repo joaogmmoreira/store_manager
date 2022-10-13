@@ -26,7 +26,13 @@ const correctProductByIdReturn = ({
   ]
 });
 
+const noProductsReturn = ({
+  type: 'PRODUCT_NOT_FOUND',
+  message: 'Product not found'
+});
+
 module.exports = {
   correctAllProductsReturn,
   correctProductByIdReturn,
+  noProductsReturn,
 }
