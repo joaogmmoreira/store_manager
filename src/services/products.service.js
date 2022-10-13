@@ -1,4 +1,5 @@
 const productsModel = require('../models/products.model');
+const validate = require('./validations/productValidation');
 
 const findAllProducts = async () => {
   const products = await productsModel.findAllProducts();
@@ -12,7 +13,18 @@ const findProductById = async (id) => {
   return { type: null, message: productById };
 };
 
+const registerProduct = async (data) => {
+  const validation = validate.registryProductValidation(data);
+  if (validation.type) return validation;
+  const insertedData = await productsModel.registerProduct(data);
+  const result = await findProductById(insertedData);
+  // console.log(result);
+
+  return { type: null, message: result.message };
+};
+
 module.exports = {
   findAllProducts,
   findProductById,
+  registerProduct,
 };
