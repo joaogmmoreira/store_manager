@@ -17,7 +17,7 @@ const registerSales = async (data, newSaleId) => {
 
 const findAllSales = async () => {
   const [result] = await connection.execute(
-    `SELECT sale_id, date, product_id, quantity 
+    `SELECT sale_id AS saleId, date, product_id AS productId, quantity 
     FROM StoreManager.sales_products AS pro
     INNER JOIN StoreManager.sales AS sal
     ON sal.id = pro.sale_id
@@ -28,15 +28,15 @@ const findAllSales = async () => {
 };
 
 const findSaleById = async (id) => {
-  const [[result]] = await connection.execute(
-    `SELECT date, product_id, quantity 
+  const [result] = await connection.execute(
+    `SELECT date, product_id AS productId, quantity 
     FROM StoreManager.sales_products AS pro
     INNER JOIN StoreManager.sales AS sal
     ON sal.id = pro.sale_id
     WHERE pro.sale_id = ?
-    ORDER BY product_id`, [id],
+    ORDER BY sale_id, product_id`, [id],
   );
-  // console.log(result);
+  console.log(result);
   return result;
 };
 
